@@ -54,7 +54,15 @@ app.get('/api/clothes/:id', (req,res) => {
     const id = Number(req.params.id);
 
     const cloth = clothes.find(cloth => cloth.id === id);
-    res.json(cloth);
+    
+    if (cloth)
+    {
+        res.json(cloth);
+    }
+    else
+        res.status(404).json({
+            msg: 'Not found'
+    })
 });
 
 const PORT = process.env.PORT || 5000;
