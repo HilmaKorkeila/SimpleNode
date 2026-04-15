@@ -41,9 +41,20 @@ let clothes = [
         inStock: true, 
     }
 ]
-
+// Get all the products 
 app.get('/api/clothes', (req,res) => {
     res.json(clothes);
+});
+
+// Get product based on the id 
+app.get('/api/clothes/:id', (req,res) => {
+    // console.log(req.params.id);
+    // res.send("Testing!");
+
+    const id = Number(req.params.id);
+
+    const cloth = clothes.find(cloth => cloth.id === id);
+    res.json(cloth);
 });
 
 const PORT = process.env.PORT || 5000;
