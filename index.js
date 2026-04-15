@@ -43,7 +43,12 @@ let clothes = [
 ]
 // Get all the products 
 app.get('/api/clothes', (req,res) => {
-    res.json(clothes);
+    // res.json(clothes);
+    res.status(200).json({
+        status: 'Success',
+        results: clothes.length,
+        data: clothes
+    })
 });
 
 // Get product based on the id 
