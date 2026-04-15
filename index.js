@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require('path');
 
+// Generate unique ids
+const crypto = require('crypto'); 
+
 const app = express();
 
 // Can get json sata from the client 
@@ -99,8 +102,26 @@ else
 
 // Create
 app.post('/api/clothes', (req,res) => {
-    console.log(req.body);
-    res.send("Testing");
+
+    // Crypto (node.js module built-in)
+
+    const newID = clothes[clothes.length-1].id + 1;
+    // console.log(newID);
+
+    const newCloth = {
+        id: newID,
+        name: req.body.name,
+        price: req.body.price,
+        brand: req.body. brand,
+        size: req.body.size,
+        color: req.body.color,
+        inStock: req.body.inStock
+    }
+
+    clothes.push(newCloth);
+
+    // console.log(req.body);
+    res.send(clothes);
 });
 
 const PORT = process.env.PORT || 5000;
