@@ -3,6 +3,11 @@ const path = require('path');
 
 const app = express();
 
+// Can get json sata from the client 
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+
+
 let clothes = [
     {
         id: 1,
@@ -90,6 +95,12 @@ else
         msg: 'Could not find the resource'
     })
 }
+});
+
+// Create
+app.post('/api/clothes', (req,res) => {
+    console.log(req.body);
+    res.send("Testing");
 });
 
 const PORT = process.env.PORT || 5000;
