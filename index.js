@@ -122,6 +122,7 @@ app.post('/api/clothes', (req,res) => {
 
     // console.log(req.body);
     res.send(clothes);
+
 });
 
 const PORT = process.env.PORT || 5000;
