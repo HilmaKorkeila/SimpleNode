@@ -6,7 +6,7 @@ const crypto = require('crypto');
 
 const app = express();
 
-// Can get json sata from the client 
+// Can get json data from the client 
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
@@ -127,7 +127,23 @@ app.post('/api/clothes', (req,res) => {
 
 // Update
 
+app.patch('/api/clothes/:id', (req,res) => {
+    const id = Number(req.params.id);
 
+    clothes.forEach(cloth => {
+        if (cloth.id===id) {
+            cloth.name = req.body.name,
+            cloth.price = req.body.price,
+            cloth.brand = req.body.brand,
+            cloth.size = req.body.size,
+            cloth.color = req.body.color,
+            cloth.inStock = req.body.inStock
+        }
+    });
+
+    res.json(clothes);
+
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
