@@ -6,45 +6,45 @@ const app = express();
 let clothes = [
     {
         id: 1,
-        name: dress,
+        name: "dress",
         price: 50,
-        brand: Mango,
-        size: S,
-        color: black,
+        brand: "Mango",
+        size: "S",
+        color: "black",
         inStock: true, 
     },
     {
         id: 2,
-        name: blouse,
+        name: "blouse",
         price: 20,
-        brand: H&M,
-        size: M,
-        color: white,
+        brand: "H&M",
+        size: "M",
+        color: "white",
         inStock: false, 
     },
     {
         id: 3,
-        name: skirt,
+        name: "skirt",
         price: 40,
-        brand: Cubus,
-        size: S,
-        color: black,
+        brand: "Cubus",
+        size: "S",
+        color: "black",
         inStock: true, 
     },
     {
         id: 4,
-        name: pants,
+        name: "pants",
         price: 90,
-        brand: Carlings,
-        size: M,
-        color: brown,
+        brand: "Carlings",
+        size: "M",
+        color: "brown",
         inStock: true, 
     }
 ]
 
-app.get('/api/products'), (req,res) => {
-    res.json(products);
-}
+app.get('/api/clothes', (req,res) => {
+    res.json(clothes);
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
