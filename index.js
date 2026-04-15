@@ -70,5 +70,27 @@ app.get('/api/clothes/:id', (req,res) => {
     })
 });
 
+// Delete
+
+app.delete('/api/clothes/:id', (req,res) => {
+    const idToRemove = Number(req.params.id);
+
+    const cloth = clothes.find(cloth => cloth.id === idToRemove);
+    
+    if (cloth) {
+        clothes = clothes.filter(cloth => cloth.id != idToRemove);
+        res.status(200).json({
+            id: idToRemove,
+            msg: 'Resource deleted succesfully'
+    })
+}
+else
+{
+    res.status(404).json({
+        msg: 'Could not find the resource'
+    })
+}
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on ${PORT}`));
