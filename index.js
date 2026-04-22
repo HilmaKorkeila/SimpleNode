@@ -58,6 +58,7 @@ const logTime = (req,res,next) => {
     next();
 }
 
+app.use(logTime);
 
 // Get all the products 
 app.get('/api/clothes', (req,res) => {
