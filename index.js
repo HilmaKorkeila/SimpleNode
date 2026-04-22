@@ -130,18 +130,40 @@ app.post('/api/clothes', (req,res) => {
 app.patch('/api/clothes/:id', (req,res) => {
     const id = Number(req.params.id);
 
-    clothes.forEach(cloth => {
-        if (cloth.id===id) {
-            cloth.name = req.body.name,
-            cloth.price = req.body.price,
-            cloth.brand = req.body.brand,
-            cloth.size = req.body.size,
-            cloth.color = req.body.color,
-            cloth.inStock = req.body.inStock
+    const cloth = clothes.find(cloth => cloth.id === id);
+
+    if(cloth) {
+        clothes.forEach(cloth => {
+            if (cloth.id===id) {
+                cloth.name = req.body.name,
+                cloth.price = req.body.price,
+                cloth.brand = req.body.brand,
+                cloth.size = req.body.size,
+                cloth.color = req.body.color,
+                cloth.inStock = req.body.inStock
         }
     });
 
-    res.json(clothes);
+        const updatedCloth = {
+            id,
+            name: req.body.name,
+            price: req.body.price,
+            brand: req.body.brand,
+            size: req.body.size,
+            color: req.body.color,
+            inStock: req.body.inStock
+        }
+
+        res.status(200).json(updatedCloth);
+   
+    }
+    else
+    {
+        res.status(400).json({
+            msg: 'Could not update'
+        })
+    }
+
 
 });
 
