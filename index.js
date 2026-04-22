@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
 
+
 let clothes = [
     {
         id: 1,
@@ -49,6 +50,15 @@ let clothes = [
         inStock: true, 
     }
 ]
+
+// Middleware that logs the time of each request
+const logTime = (req,res,next) => {
+    const date = new Date(); 
+    console.log(date);
+    next();
+}
+
+
 // Get all the products 
 app.get('/api/clothes', (req,res) => {
     // res.json(clothes);
